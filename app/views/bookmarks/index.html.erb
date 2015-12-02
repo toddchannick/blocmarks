@@ -1,0 +1,5 @@
+<%= link_to "New Bookmark", new_bookmark_path, class: "btn btn-primary" %>
+
+<%= @bookmarks.each do |bookmark| %>
+  <h3><%= link_to bookmark.title, bookmark %></h3>
+<% end %>
