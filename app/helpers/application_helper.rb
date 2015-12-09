@@ -1,5 +1,12 @@
 module ApplicationHelper
-  
+  require 'embedly'
+  require 'json'
+  def display(url)
+    embedly_api = Embedly::API.new(key: 'd3af281a9c844c278d324f78ce32c243')
+    obj = embedly_api.oembed :url => url
+    (obj.first.thumbnail_url).html_safe
+  end
+
   def nav_link(link_text, link_path, http_method=nil)
     class_name = current_page?(link_path) ? 'active' : ''
 

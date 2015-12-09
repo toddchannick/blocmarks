@@ -1,8 +1,36 @@
-<h3><%= @bookmark.title %></h3>
-<p><%= @bookmark.description %></p>
-<br>
-<p><%= @bookmark.created_at.strftime("Added on %b %d, %Y") %></p>
-
-<%= link_to "Back", root_path %>
-<%= link_to 'Edit', edit_bookmark_path %>
-<%= link_to 'Delete', bookmark_path, method: :delete, data: { confirm: 'Are you sure you want to delete this bookmark?' } %>
+<div id="bookmark-show">
+  <div>
+    <div class="panel panel-default">
+      <div class="panel-heading bookmark-image">
+        <%= link_to bookmarks_path do %>
+          <span class="pull-left clickable close-panel"><i class="glyphicon glyphicon-remove"></i></span>
+        <% end %>
+        <%= image_tag(display(@bookmark.url)) %>
+      </div>
+      <div class="panel-body">
+        <h3><%= @bookmark.title %></h3>
+        <p><%= @bookmark.description %></p>
+      </div>
+      <div class="panel-footer narrow-spacing">
+        <div class="row">
+          <div class="col-xs-6">
+            <p><small><%= @bookmark.user.name %></small></p>
+            <p><small><%= @bookmark.created_at.strftime("Added on %b %d, %Y") %></small></p>
+          </div>
+          <div class="col-xs-6">
+            <div class="btn-group pull-right panel-btns">
+              <% if user_signed_in? %>
+                <%= link_to like_bookmark_path(@bookmark), method: :put, class: "btn btn-default" do %>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <%= @bookmark.get_upvotes.size %>
+                <% end %>
+                <%= link_to 'Edit', edit_bookmark_path, class: "btn btn-default" %>
+                <%= link_to 'Delete', bookmark_path, method: :delete, data: { confirm: 'Are you sure you want to delete this bookmark?' }, class: "btn btn-default" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

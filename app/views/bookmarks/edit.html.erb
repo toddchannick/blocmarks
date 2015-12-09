@@ -1,5 +1,12 @@
-<h2>Edit Bookmark</h2>
-
-<%= render 'form' %>
-
-<%= link_to 'Cancel', bookmark_path %>
+<div class = "col-sm-8 col-sm-offset-2">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Edit Bookmark</h3>
+    </div>
+    <div class="panel-body">
+      <div class="current_img">
+        <center><%= image_tag(display(@bookmark.url)) %></center>
+      </div>
+      <%= render 'form' %>
+    </div>
+</div>

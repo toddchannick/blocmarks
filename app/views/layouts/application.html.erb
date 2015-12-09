@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="blocmarksApp">
 <head>
   <title>Blocmarks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<body ng-controller="bookmarksCtrl">
 
   <%= render 'layouts/navbar' %>
 
@@ -37,8 +38,13 @@
 
   <div class="container-fluid">
 
-    <div class="body-wrapper">
-      <%= yield %>
+    <div class="row">
+      <div class="left col-sm-2 col-lg-2 no-padding">
+        <%= render 'layouts/sidenav' %>
+      </div>
+      <div class="right col-sm-10 col-lg-10 main-content">
+        <%= yield %>
+      </div>
     </div>
   </div>
 

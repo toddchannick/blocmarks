@@ -16,20 +16,21 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
-  resources :bookmarks
+
+  resources :bookmarks do
+    member do
+      put "like", to: "bookmarks#upvote"
+    end
+  end
+
+  resources :topics
 
   root 'devise/sessions#new'
 
-  # devise_scope :user do
-  #   authenticated :user do
-  #     root 'bookmarks#index', as: :authenticated_root
-  #     resources :bookmarks
-  #   end
-  #
-  #   unauthenticated do
-  #     root 'bookmarks#index', as: :unauthenticated_root
-  #   end
-  # end
+  #API Routing
+  scope :api, defaults: { format: :json } do
+    resources :bookmarks, except: [:new, :edit]
+  end
 
 
 end
