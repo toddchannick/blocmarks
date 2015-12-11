@@ -25,11 +25,12 @@ Rails.application.routes.draw do
 
   resources :topics
 
-  root 'devise/sessions#new'
+  # root 'devise/sessions#new'
 
   #API Routing
-  scope :api, defaults: { format: :json } do
+  namespace :api, defaults: { format: :json } do
     resources :bookmarks, except: [:new, :edit]
+    resources :topics
   end
 
 

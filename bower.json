@@ -1,0 +1,22 @@
+{
+  "name": "blocmarks",
+  "homepage": "https://github.com/toddchannick/blocmarks",
+  "authors": [
+    "Todd Channick <toc5012@gmail.com>"
+  ],
+  "description": "BlocMarks is a tool to save and manage your favorite bookmarks. Powered by Rails and Angular.",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-embedly": "~0.0.8"
+  }
+}

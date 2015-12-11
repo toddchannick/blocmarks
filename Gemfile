@@ -12,7 +12,10 @@ gem "font-awesome-rails"
 gem 'turbolinks'
 gem 'simple_form', '~> 3.2'
 gem 'jbuilder', '~> 2.0'
+
 gem 'devise'
+gem 'omniauth-facebook', '~> 3.0'
+
 gem 'whenever', :require => false
 gem 'faker'
 gem 'paperclip', '~> 4.3', '>= 4.3.2'
@@ -22,8 +25,13 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'querystring', '~> 0.1.0'
 gem 'embedly', '~> 1.9', '>= 1.9.1'
 gem 'better_errors', '~> 2.1', '>= 2.1.1'
+gem 'angularjs-rails', '~> 1.4', '>= 1.4.7'
+gem 'active_model_serializers'
+gem 'angular-masonry-rails'
+gem 'angular-rails-templates'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
+
 
 group :development, :test do
   gem 'byebug'

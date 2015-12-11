@@ -4,7 +4,7 @@
   <title>Blocmarks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -39,10 +39,25 @@
   <div class="container-fluid">
 
     <div class="row">
-      <div class="left col-sm-2 col-lg-2 no-padding">
+      <div class="left col-xs-3 col-sm-2 no-padding">
         <%= render 'layouts/sidenav' %>
       </div>
-      <div class="right col-sm-10 col-lg-10 main-content">
+      <div class="right col-xs-9 col-sm-10 main-content">
+
+        <!-- <div class="spinner">
+          <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+          </div>
+        </div> -->
+
         <%= yield %>
       </div>
     </div>

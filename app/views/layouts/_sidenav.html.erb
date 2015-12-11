@@ -3,7 +3,7 @@
     <form class="navbar-form" role="search">
       <div class="form-group search">
         <span class="fa fa-search"></span>
-        <input type="text" class="form-control" placeholder="Search">
+        <input ng-model="searchText" type="text" class="form-control" placeholder="Search">
       </div>
       <!-- <button type="submit" class="btn btn-default">Search</button> -->
     </form>
@@ -14,13 +14,13 @@
       <span id="side-title">categories</span>
       <ul class="cat-list" id="categories">
         <li><%= link_to "All", bookmarks_path %></li>
-        <% @topics.each do |t| %>
-          <li><%= link_to "#{t.title}", bookmarks_path(topic_id: "#{t.id}") %></li>
-        <% end %>
+        <li ng-repeat="topic in topics">
+          <a ng-href=""> {{ topic.title }} </a>
+        </li>
       </ul>
     <% else %>
       <p class="summary">
-        BlocMarks is a tool to save and manage your favorite bookmarks. We make it easy to find, categorize, and share links with friends. Get started with a free account, or <%= link_to "explore", bookmarks_path, class: "side-menu-link" %> popular bookmarks submitted by other users!
+        BlocMarks is a tool to help you save and manage your favorite bookmarks. We make it easy to find, categorize, and share links with friends. Get started with a free account, or <%= link_to "explore", bookmarks_path, class: "side-menu-link caps" %> popular bookmarks submitted by other users!
       </p>
     <% end %>
   </div>

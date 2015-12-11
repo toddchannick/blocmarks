@@ -6,16 +6,16 @@
   )
   user.save
 end
-
-User.new(
-  name: "Todd Channick",
-  email: "toc5012@gmail.com",
-  password: "password"
-)
-
+#
+# User.new(
+#   name: "Todd Channick",
+#   email: "toc5012@gmail.com",
+#   password: "password"
+# )
+#
 users = User.all
 
-topics_arr = ["Animals", "Art", "Education", "Fashion", "Food", "Health", "Music", "News", "Productivity", "Shopping", "Sports", "Technology", "Videos"]
+topics_arr = ["Animals", "Art", "Education", "Entertainment", "Fashion", "Fitness", "Food", "Games", "Health", "Music", "News", "Productivity", "Shopping", "Sports", "Technology", "Videos"]
 
 topics_arr.each do |title|
   topic = Topic.new(
@@ -25,6 +25,7 @@ topics_arr.each do |title|
 end
 
 topics = Topic.all
+
 
 # 100.times do
 #   bookmark = Bookmark.new(
@@ -38,7 +39,7 @@ topics = Topic.all
 # end
 #
 #
-# puts "Seed finished"
-# puts "#{Topic.count} topics created"
-# puts "#{User.count} users created"
-# puts "#{Bookmark.count} bookmarks created"
+puts "Seed finished"
+puts "#{Topic.count} topics created"
+puts "#{User.count} users created"
+puts "#{Bookmark.count} bookmarks created"
