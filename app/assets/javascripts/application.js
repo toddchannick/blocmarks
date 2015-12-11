@@ -17,7 +17,6 @@
 //= require angular-animate
 //= require angular-resource
 //= require angular-route
-//= require angular-embedly
 //= require angular-masonry
 //= require modernizr
 //= require masonry/jquery.masonry
