@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="blocmarksApp">
+<html>
 <head>
   <title>Blocmarks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body ng-controller="bookmarksCtrl">
+<body>
 
   <%= render 'layouts/navbar' %>
 
@@ -38,7 +38,7 @@
 
   <div class="container-fluid">
 
-    <div class="row">
+    <div class="row"  ng-app="blocmarksApp" ng-controller="bookmarksCtrl">
       <div class="left col-xs-3 col-sm-2 no-padding">
         <%= render 'layouts/sidenav' %>
       </div>

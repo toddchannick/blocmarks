@@ -16,22 +16,6 @@
   </div>
 </div>
 <br>
-
-<!-- <%= link_to "Add Bookmark", new_bookmark_path, class: "btn btn-primary" %> -->
-<div masonry="{ itemSelector: '.masonry-brick', columnWidth: 50, transitionDuration: 0, isFitWidth: true, isAnimated: !Modernizr.csstransitions }" id="masonry-container" reload-on-resize>
-  <div class="masonry-brick col2 panel panel-default" ng-repeat="bookmark in bookmarks track by $index | filter:searchText">
-    <div class="panel-heading fill">
-      <a ng-href="/bookmarks/{{bookmark.id}}"><img src="{{bookmark.image}}" /></a>
-    </div>
-    <div class="panel-body">
-      <span>
-        <a ng-href="/bookmarks/{{bookmark.id}}">{{ bookmark.title }}</a>
-      </span>
-    </div>
-    <div class="panel-footer">
-      <div id="category-tags">
-        <span id="tag">#{{ bookmark.topic.title }}</span>
-      </div>
-    </div>
+  <div ui-view>
   </div>
 </div>

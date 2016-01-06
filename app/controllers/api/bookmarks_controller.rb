@@ -8,7 +8,7 @@ class Api::BookmarksController < ApiController
 
   def show
     @bookmark = Bookmark.find(params[:id])
-    render json: @bookmarks, each_serializer: BookmarksSerializer
+    render json: @bookmark, each_serializer: BookmarkSerializer, root:false
   end
 
 

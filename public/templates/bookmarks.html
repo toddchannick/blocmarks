@@ -1,0 +1,17 @@
+<form><input type="text" id="quicksearch" ng-model="searchText" class="form-control" placeholder="Search by title" ng-model-options="{ debounce : 600 }" /></form>
+<br>
+<ul class="dynamic-grid" angular-grid="bookmarks" grid-width="200" gutter-size="10" angular-grid-id="bookmark-grid" id="grid">
+  <li class="grid" ng-repeat="bookmark in bookmarks">
+    <a ui-sref="show({id: bookmark.id })"><img class="grid-img" ng-src="{{bookmark.image}}" /></a>
+    <div class="panel-body">
+      <span>
+        <a ui-sref="show({id: bookmark.id })">{{ bookmark.title }}</a>
+      </span>
+    </div>
+    <div class="panel-footer">
+      <div id="category-tags">
+        <span id="tag">#{{ bookmark.topic.title }}</span>
+      </div>
+    </div>
+  </li>
+</ul>

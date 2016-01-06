@@ -3,7 +3,7 @@
     <form class="navbar-form" role="search">
       <div class="form-group search">
         <span class="fa fa-search"></span>
-        <input ng-model="searchText" type="text" class="form-control" placeholder="Search">
+        <input id="quicksearch" ng-model="searchText" type="text" class="form-control" placeholder="Search by title" ng-model-options="{debounce : 600}" >
       </div>
       <!-- <button type="submit" class="btn btn-default">Search</button> -->
     </form>
@@ -12,11 +12,14 @@
   <div class="side-categories">
     <% if user_signed_in? %>
       <span id="side-title">categories</span>
-      <ul class="cat-list" id="categories">
-        <li><%= link_to "All", bookmarks_path %></li>
-        <li ng-repeat="topic in topics">
+      <ul class="cat-list filter-group" id="filters">
+        <li><a ui-sref="bookmarks">All</a></li>
+          <% @topics.each do |topic| %>
+            <li ng-click="catFilter('<%= topic.title %>')"><a><%= topic.title %></a></li>
+          <% end %>
+        <!-- <li ng-repeat="topic in topics">
           <a ng-href=""> {{ topic.title }} </a>
-        </li>
+        </li> -->
       </ul>
     <% else %>
       <p class="summary">

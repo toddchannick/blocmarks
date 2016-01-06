@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angulargrid'
+end
+
 group :production do
    gem 'pg'
    gem 'rails_12factor'
@@ -39,6 +43,7 @@ gem 'simple_form', '~> 3.2'
 
 
 gem 'devise'
+gem 'omniauth', '~> 1.2', '>= 1.2.2'
 gem 'omniauth-facebook', '~> 3.0'
 
 gem "bower-rails", "~> 0.10.0"
@@ -52,6 +57,6 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'querystring', '~> 0.1.0'
 gem 'embedly', '~> 1.9', '>= 1.9.1'
 gem 'angularjs-rails', '~> 1.4', '>= 1.4.7'
+gem 'angular-ui-router-rails', '~> 0.2.15'
 gem 'active_model_serializers'
-gem 'angular-masonry-rails'
-gem 'angular-rails-templates'
+gem 'draggabilly-rails'

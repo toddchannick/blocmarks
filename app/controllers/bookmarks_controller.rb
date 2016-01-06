@@ -44,7 +44,7 @@ class BookmarksController < ApplicationController
 
   def destroy
     @bookmark.destroy
-    redirect_to root_path, notice: "Bookmark deleted"
+    redirect_to bookmarks_path, notice: "Bookmark deleted"
   end
 
   def upvote

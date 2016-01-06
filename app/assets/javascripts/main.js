@@ -1,30 +1,82 @@
-var app = angular.module('blocmarksApp', ['ngResource', 'ngRoute','angular-embedly', 'wu.masonry']);
+var app = angular.module('blocmarksApp', ['ngResource', 'ui.router', 'angularGrid', 'ngAnimate', 'navApp']);
 
-app.config(function(embedlyServiceProvider){
-    embedlyServiceProvider.setKey('d3af281a9c844c278d324f78ce32c243');
-});
+app.config(['$stateProvider','$urlRouterProvider','$locationProvider',
+  function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
-    $routeProvider
-      .when("/", {
-        templateUrl: "../views/bookmarks/index.html.erb",
-        controller: "bookmarksCtrl"
+    $stateProvider
+      .state('bookmarks', {
+        url: '/bookmarks',
+        controller: 'bookmarksCtrl',
+        templateUrl: '/templates/bookmarks.html'
+      })
+      .state('show', {
+        url: 'bookmarks/:id',
+        templateUrl: '/templates/show.html',
+        controller: 'bookmarkCtrl',
+        resolve: {
+          bookmark: function($http, $stateParams){
+            var url = "/api/bookmarks/" + $stateParams.id;
+            return $http.get(url).then(function(res){
+              console.log(res.data);
+              return res.data;
+            });
+          }
+        }
       });
-      // .when("/bookmarks/:id", {
-      //   templateUrl: "../views/bookmarks/show.html.erb",
-      //   controller: "bookmarksCtrl"
-      // });
+
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      });
+
+
 }]);
 
-app.controller('bookmarksCtrl', function($scope, Results){
+app.controller('bookmarksCtrl',['$scope', '$location', 'Results', 'angularGridInstance', function($scope, $location, Results, angularGridInstance){
   $scope.topics = [];
   $scope.bookmarks = [];
+  $scope.searchText = '';
 
   Results.results.then(function(results){
     $scope.topics = results[0].data["topics"];
     $scope.bookmarks = results[1].data["bookmarks"];
+    $scope.displayed = $scope.bookmarks;
   });
 
+  $scope.goto = function(path){
+    $location.path(path);
+  }
+
+
+  $scope.$watch('searchText',function(val, val2){
+    if (val !== val2) {
+      val = val.toLowerCase();
+      $scope.bookmarks = $scope.displayed.filter(function(obj){
+          return obj.title.toLowerCase().indexOf(val) != -1;
+      });
+    }
+  });
+
+  $scope.$watchCollection('bookmarks', function(newVal, oldVal){
+    catFilter(val)
+  });
+
+  function catFilter(val){
+      console.log(val);
+      $scope.bookmarks = $scope.displayed.filter(function(obj){
+        return obj.topic.title.indexOf(val) != -1;
+      });
+  };
+
+
+}]);
+
+app.controller('navCtrl', ['$scope', '$rootScope', function ($scope, $rootScope){
+  $rootScope.$emit();
+}]);
+
+app.controller('bookmarkCtrl', function($scope, bookmark){
+  $scope.bookmark = bookmark;
 });
 
 app.factory('Results',['$http', '$q', function($http, $q){
@@ -34,6 +86,27 @@ app.factory('Results',['$http', '$q', function($http, $q){
     results: $q.all([topics,bookmarks])
   }
 }]);
+
+
+app.directive('ngReallyClick', [function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      element.bind('click', function() {
+        var message = attrs.ngReallyMessage;
+        if (message && confirm(message)) {
+            scope.$apply(attrs.ngReallyClick);
+        }
+      });
+    }
+  }
+}]);
+
+
+
+app.run(($rootScope) => {
+  $rootScope.$on("$stateChangeError", console.log.bind(console));
+});
 
 
 //
@@ -71,7 +144,7 @@ app.factory('Results',['$http', '$q', function($http, $q){
 //     link: function (scope, element, attr) {
 //       if (scope.$last === true) {
 //         $timeout(function () {
-//           scope.$emit('ngRepeatFinished');
+//           scope.$broadcast('ngRepeatFinished');
 //         });
 //       }
 //     }
